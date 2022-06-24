@@ -18,3 +18,12 @@ class MuseumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Museum
         fields = '__all__'
+
+
+class CulturalPropertySerializer(serializers.ModelSerializer):
+    artist = serializers.CharField(read_only = True, source = 'artist.name')
+    medium = serializers.CharField(read_only = True, source = 'medium.description')
+    museum = serializers.CharField(read_only = True, source = 'museum.name')
+    class Meta:
+        model = CulturalProperty
+        fields = '__all__'
