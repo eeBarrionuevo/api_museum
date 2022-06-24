@@ -8,12 +8,20 @@ class Artist(models.Model):
     birth_date = models.DateField()
     country = models.CharField(max_length = 200)
     image = models.ImageField(upload_to = "artists", null = True)
+
+    def __str__(self):
+        return self.name
+    
+
     
     
 class Medium(models.Model):
     description = models.CharField(max_length = 200)
     status = models.BooleanField()
-    
+
+    def __str__(self):
+        return self.description    
+
 
 class Museum(models.Model):
     name = models.CharField(max_length = 200)  
@@ -24,6 +32,9 @@ class Museum(models.Model):
     latitude = models.FloatField(null = True)
     longitude = models.FloatField(null = True)
     image = models.ImageField(upload_to = "museums", null = True)
+    
+    def __str__(self):
+        return self.name   
 
 
 class CulturalProperty(models.Model):
@@ -33,3 +44,6 @@ class CulturalProperty(models.Model):
     medium = models.ForeignKey(Medium, on_delete = models.CASCADE)
     museum = models.ForeignKey(Museum, on_delete = models.CASCADE)
     image = models.ImageField(upload_to = "properties", null = True)
+
+    def __str__(self):
+        return self.name    
